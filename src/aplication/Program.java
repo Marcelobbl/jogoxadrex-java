@@ -1,12 +1,14 @@
 package aplication;
 
-import tabuleiro.Borda;
+
+import xadrex.PartidaXadrex;
 
 
 public class Program {
 
 	public static void main(String[] args) {
-		Borda borda = new Borda(8, 8);
+		PartidaXadrex partidaXadrex = new PartidaXadrex();
+		UI.imprimirTabuleiro(partidaXadrex.getPeca());
 		
 	}
 
