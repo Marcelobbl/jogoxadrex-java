@@ -4,12 +4,12 @@ public class Borda {
 	
 	private int linha;
 	private int coluna;
-	private Peca[][] peca;
+	private Peca[][] pecas;
 	
 	public Borda(int linha, int coluna) {
 		this.linha = linha;
 		this.coluna = coluna;
-		peca = new Peca[linha][coluna];
+		pecas = new Peca[linha][coluna];
 	}
 
 	public int getLinha() {
@@ -28,11 +28,15 @@ public class Borda {
 		this.coluna = coluna;
 	}
 	public Peca peca(int linha, int coluna) {
-		return peca[linha][coluna];
+		return pecas[linha][coluna];
 	}
 	public Peca peca(Posicao posicao) {
-		return peca[posicao.getLinha()][posicao.getColuna()];
+		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
+	public void colocarPeca(Peca peca, Posicao posicao) {
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		peca.posicao = posicao;
+	}
 	
 }
