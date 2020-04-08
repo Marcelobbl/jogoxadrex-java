@@ -1,7 +1,6 @@
 package xadrex;
 
 import tabuleiro.Borda;
-import tabuleiro.Posicao;
 import xadrex.pecas.Rei;
 import xadrex.pecas.Torre;
 
@@ -22,10 +21,14 @@ public class PartidaXadrex {
 		}
 		return mat;
 	}
+	
+	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {
+		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());
+	}
 	private void iniciaPartida() {
-		borda.colocarPeca(new Torre(borda, Cor.Branco), new Posicao(9, 1));
-		borda.colocarPeca(new Rei(borda, Cor.Preto), new Posicao(0, 4));
-		borda.colocarPeca(new Rei(borda, Cor.Branco), new Posicao(7, 4));
+		colocarNovaPeca('b', 6, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto));
+		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco));
 	}
 
 }
