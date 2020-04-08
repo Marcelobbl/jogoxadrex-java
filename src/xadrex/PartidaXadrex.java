@@ -26,9 +26,19 @@ public class PartidaXadrex {
 		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());
 	}
 	private void iniciaPartida() {
-		colocarNovaPeca('b', 6, new Torre(borda, Cor.Branco));
-		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto));
-		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco));
+		colocarNovaPeca('c', 1, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('c', 2, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('d', 2, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('e', 2, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('e', 1, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('d', 1, new Rei(borda, Cor.Branco));
+
+		colocarNovaPeca('c', 7, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('c', 8, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('d', 7, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('e', 7, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('e', 8, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('d', 8, new Rei(borda, Cor.Preto));
 	}
 
 }
