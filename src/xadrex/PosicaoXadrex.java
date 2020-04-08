@@ -1,6 +1,5 @@
 package xadrex;
 
-import tabuleiro.ExcessaoXadrex;
 import tabuleiro.Posicao;
 
 public class PosicaoXadrex {
@@ -29,7 +28,7 @@ public class PosicaoXadrex {
 	}
 	
 	protected static PosicaoXadrex fromPosicao(Posicao posicao) {
-		return new PosicaoXadrex((char)('a' - posicao.getColunas()), 8 - posicao.getLinhas());
+		return new PosicaoXadrex((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
 	}
 	
 	@Override

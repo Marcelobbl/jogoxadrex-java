@@ -1,6 +1,8 @@
-package tabuleiro;
+package xadrex;
 
-public class ExcessaoXadrex extends RuntimeException{
+import tabuleiro.ExcessaoTabuleiro;
+
+public class ExcessaoXadrex extends ExcessaoTabuleiro{
 	private static final long serialVersionUID = 1L;
 	
 	public ExcessaoXadrex(String msg) {

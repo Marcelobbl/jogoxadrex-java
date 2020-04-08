@@ -24,34 +24,49 @@ public class Borda {
 		return colunas;
 	}
 
-	public Peca peca(int linhas, int colunas) {
-		if (!posicaoExiste(linhas, colunas)){
+	public Peca peca(int linha, int coluna) {
+		if (!posicaoExiste(linha, coluna)){
 			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
 		}
-		return pecas[linhas][colunas];
+		return pecas[linha][coluna];
 	}
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExiste(posicao)){
 			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
 		}
-		return pecas[posicao.getLinhas()][posicao.getColunas()];
+		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
 	public void colocarPeca(Peca peca, Posicao posicao) {
 		if(existePeca(posicao)) {
 			throw new ExcessaoTabuleiro("Já existe uma peça na posição " + posicao);
 		}
-		pecas[posicao.getLinhas()][posicao.getColunas()] = peca;
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
+	}
+	
+	public Peca removePeca(Posicao posicao) {
+		if (!posicaoExiste(posicao)){
+			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");	
+		}
+		if (peca(posicao)== null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
 	}
 	
 	private boolean posicaoExiste(int linha, int coluna) {
 		
 		return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas; 
 	}
+	
 	public boolean posicaoExiste(Posicao posicao) {
-		return posicaoExiste(posicao.getLinhas(), posicao.getColunas());
+		return posicaoExiste(posicao.getLinha(), posicao.getColuna());
 	}
+	
 	public boolean existePeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)){
 			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");

@@ -1,7 +1,11 @@
 package aplication;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import xadrex.Cor;
 import xadrex.PecaXadrex;
+import xadrex.PosicaoXadrex;
 
 public class UI {
 
@@ -26,6 +30,18 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	public static PosicaoXadrex leituraPosicaoXadrex(Scanner sc) {
+		try {
+		String s = sc.nextLine();
+		char coluna = s.charAt(0);
+		int linha = Integer.parseInt(s.substring(1));
+		return new PosicaoXadrex(coluna, linha);
+		}
+		catch (RuntimeException e) {
+			throw new InputMismatchException("Erro lendo posição da peça. Valores validos são de a1 até h8.");
+		}
+	}
+	
 	public static void imprimirTabuleiro(PecaXadrex[][] peca) {
 		for (int i = 0; i < peca.length; i++) {
 			System.out.print((8 - i) + " ");

@@ -1,6 +1,8 @@
 package xadrex;
 
 import tabuleiro.Borda;
+import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import xadrex.pecas.Rei;
 import xadrex.pecas.Torre;
 
@@ -12,7 +14,7 @@ public class PartidaXadrex {
 		borda = new Borda(8, 8);
 		iniciaPartida();
 	}
-	public PecaXadrex[][] getPeca(){
+	public PecaXadrex[][] getPecas(){
 		PecaXadrex[][] mat = new PecaXadrex[borda.getLinhas()][borda.getColunas()];
 		for(int i=0 ; i<borda.getLinhas();i++) {
 			for(int j=0; j<borda.getColunas(); j++) {
@@ -22,9 +24,29 @@ public class PartidaXadrex {
 		return mat;
 	}
 	
+	public PecaXadrex ExecutarMovimentoXadrex(PosicaoXadrex posicaoOrigem, PosicaoXadrex posicaoDestino) {
+		Posicao origem = posicaoOrigem.toPosicao();
+		Posicao destino = posicaoDestino.toPosicao();
+		validarPosicaoOrigem(origem);
+		Peca capturarPeca = movePeca(origem, destino);
+		return (PecaXadrex)capturarPeca;
+	}
+	
+	private Peca movePeca(Posicao origem, Posicao destino) {
+		Peca p = borda.removePeca(origem);
+		Peca capturaPeca = borda.removePeca(destino);
+		borda.colocarPeca(p, destino);
+		return capturaPeca;
+	}
+	private void validarPosicaoOrigem(Posicao posicao) {
+		if (!borda.existePeca(posicao));
+		throw new ExcessaoXadrex("Não existe peça na posição de origem");
+	}
+	
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {
 		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());
 	}
+	
 	private void iniciaPartida() {
 		colocarNovaPeca('c', 1, new Torre(borda, Cor.Branco));
 		colocarNovaPeca('c', 2, new Torre(borda, Cor.Branco));
