@@ -2,32 +2,32 @@ package tabuleiro;
 
 public class Posicao {
 
-	private int linha;
-	private int coluna;
+	private int linhas;
+	private int colunas;
 	
-	public Posicao(int linha, int coluna) {
-		this.linha = linha;
-		this.coluna = coluna;
+	public Posicao(int linhas, int colunas) {
+		this.linhas = linhas;
+		this.colunas = colunas;
 	}
 
-	public int getLinha() {
-		return linha;
+	public int getLinhas() {
+		return linhas;
 	}
 
-	public void setLinha(int linha) {
-		this.linha = linha;
+	public void setLinhas(int linhas) {
+		this.linhas = linhas;
 	}
 
-	public int getColuna() {
-		return coluna;
+	public int getColunas() {
+		return colunas;
 	}
 
-	public void setColuna(int coluna) {
-		this.coluna = coluna;
+	public void setColunas(int colunas) {
+		this.colunas = colunas;
 	}
 	@Override
 	public String toString(){
-		return linha + ", " + coluna;
+		return linhas + ", " + colunas;
 	}
 	
 	

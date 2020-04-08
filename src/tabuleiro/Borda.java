@@ -2,41 +2,60 @@ package tabuleiro;
 
 public class Borda {
 	
-	private int linha;
-	private int coluna;
+	private int linhas;
+	private int colunas;
 	private Peca[][] pecas;
 	
-	public Borda(int linha, int coluna) {
-		this.linha = linha;
-		this.coluna = coluna;
-		pecas = new Peca[linha][coluna];
+	public Borda(int linhas, int colunas) {
+		if (linhas< 1 || colunas < 1) {
+			throw new ExcessaoTabuleiro("Erro de tabuleiro: E necessario que haja pelo menos uma linha e uma coluna");
+			}
+		this.linhas = linhas;
+		this.colunas = colunas;
+		pecas = new Peca[linhas][colunas];
 	}
 
-	public int getLinha() {
-		return linha;
+	public int getLinhas() {
+		return linhas;
 	}
 
-	public void setLinha(int linha) {
-		this.linha = linha;
+	
+	public int getColunas() {
+		return colunas;
 	}
 
-	public int getColuna() {
-		return coluna;
-	}
-
-	public void setColuna(int coluna) {
-		this.coluna = coluna;
-	}
-	public Peca peca(int linha, int coluna) {
-		return pecas[linha][coluna];
+	public Peca peca(int linhas, int colunas) {
+		if (!posicaoExiste(linhas, colunas)){
+			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
+		}
+		return pecas[linhas][colunas];
 	}
 	public Peca peca(Posicao posicao) {
-		return pecas[posicao.getLinha()][posicao.getColuna()];
+		if (!posicaoExiste(posicao)){
+			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
+		}
+		return pecas[posicao.getLinhas()][posicao.getColunas()];
 	}
 	
 	public void colocarPeca(Peca peca, Posicao posicao) {
-		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		if(existePeca(posicao)) {
+			throw new ExcessaoTabuleiro("Já existe uma peça na posição " + posicao);
+		}
+		pecas[posicao.getLinhas()][posicao.getColunas()] = peca;
 		peca.posicao = posicao;
 	}
 	
+	private boolean posicaoExiste(int linha, int coluna) {
+		
+		return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas; 
+	}
+	public boolean posicaoExiste(Posicao posicao) {
+		return posicaoExiste(posicao.getLinhas(), posicao.getColunas());
+	}
+	public boolean existePeca(Posicao posicao) {
+		if (!posicaoExiste(posicao)){
+			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
+		}
+		return peca(posicao) != null;
+	}
 }
