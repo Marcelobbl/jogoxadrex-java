@@ -8,12 +8,25 @@ import xadrex.pecas.Torre;
 
 public class PartidaXadrex {
 	
+	private int turno;
+	private Cor jogadorVez;
 	private Borda borda;
 	
 	public PartidaXadrex() {
 		borda = new Borda(8, 8);
+		turno = 1;
+		jogadorVez =Cor.Branco;
 		iniciaPartida();
 	}
+	
+	public int getTurno() {
+		return turno;
+	}
+	
+	public Cor getJogadorVez() {
+		return jogadorVez;
+	}
+	
 	public PecaXadrex[][] getPecas(){
 		PecaXadrex[][] mat = new PecaXadrex[borda.getLinhas()][borda.getColunas()];
 		for(int i=0 ; i<borda.getLinhas();i++) {
@@ -36,6 +49,7 @@ public class PartidaXadrex {
 		validarPosicaoOrigem(origem);
 		validarPosicaoDestino(origem, destino);
 		Peca capturarPeca = movePeca(origem, destino);
+		proximoTurno();
 		return (PecaXadrex)capturarPeca;
 	}
 	
@@ -49,6 +63,9 @@ public class PartidaXadrex {
 		if (!borda.existeUmaPeca(posicao)){
 		throw new ExcessaoXadrex("Não existe peça na posição de origem");
 		}
+		if (jogadorVez != ((PecaXadrex)borda.peca(posicao)).getCor()) {
+			throw new ExcessaoXadrex("A peça ecolhida não é sua: ");
+		}
 		if (!borda.peca(posicao).existeMovimentoPossivel()) {
 			throw new ExcessaoXadrex("Não existe movimentos possiveis para a peça escolhida");
 		}
@@ -58,6 +75,11 @@ public class PartidaXadrex {
 		if (!borda.peca(origem).possivelMovimento(destino)) {
 			throw new ExcessaoXadrex("A peça escolhida não pode se mover para a posição de destino");
 		}
+	}
+	
+	private void proximoTurno() {
+		turno ++;
+		jogadorVez = (jogadorVez== Cor.Branco) ? Cor.Preto : Cor.Branco;
 	}
 		
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {

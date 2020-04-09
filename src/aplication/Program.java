@@ -21,7 +21,7 @@ public class Program {
 			try {
 				UI.limpaTela();
 				
-				UI.imprimirTabuleiro(partidaXadrex.getPecas());
+				UI.imprimirPartida(partidaXadrex);
 				System.out.println();
 				System.out.print("Origem: ");
 				PosicaoXadrex origem = UI.leituraPosicaoXadrex(sc);

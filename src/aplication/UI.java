@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import xadrex.Cor;
+import xadrex.PartidaXadrex;
 import xadrex.PecaXadrex;
 import xadrex.PosicaoXadrex;
 
@@ -46,6 +47,12 @@ public class UI {
 		}
 	}
 	
+	public static void imprimirPartida(PartidaXadrex partidaXadrex) {
+		imprimirTabuleiro(partidaXadrex.getPecas());
+		System.out.println();
+		System.out.println("Turno : " + partidaXadrex.getTurno());
+		System.out.println("Esperando jogador: " + partidaXadrex.getJogadorVez());
+	}
 	public static void imprimirTabuleiro(PecaXadrex[][] peca) {
 		for (int i = 0; i < peca.length; i++) {
 			System.out.print((8 - i) + " ");
