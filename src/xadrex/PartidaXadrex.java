@@ -39,11 +39,15 @@ public class PartidaXadrex {
 		return capturaPeca;
 	}
 	private void validarPosicaoOrigem(Posicao posicao) {
-		if (!borda.existeUmaPeca(posicao));{
+		if (borda.existeUmaPeca(posicao)){
 		throw new ExcessaoXadrex("Não existe peça na posição de origem");
+		}
+		if (!borda.peca(posicao).existeMovimentoPossivel()) {
+			throw new ExcessaoXadrex("Não existe movimentos possiveis para a peça escolhida");
 		}
 	}
 	
+		
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {
 		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());
 	}

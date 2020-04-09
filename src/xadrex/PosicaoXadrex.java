@@ -24,7 +24,7 @@ public class PosicaoXadrex {
 	}
 
 	protected Posicao toPosicao() {
-		return new Posicao (8 - linha, coluna -'a');
+		return new Posicao(8 - linha, coluna -'a');
 	}
 	
 	protected static PosicaoXadrex fromPosicao(Posicao posicao) {

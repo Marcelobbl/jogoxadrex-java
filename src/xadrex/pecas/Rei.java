@@ -13,5 +13,10 @@ public class Rei extends PecaXadrex {
 	public String toString() {
 		return "K";
 	}
+	@Override
+	public boolean[][] possivelMovimentos() {
+		boolean[][] mat = new boolean [getBorda().getLinhas()][getBorda().getColunas()];
+		return mat;
+	}
 
 }
