@@ -38,7 +38,7 @@ public class Borda {
 	}
 	
 	public void colocarPeca(Peca peca, Posicao posicao) {
-		if(existePeca(posicao)) {
+		if(existeUmaPeca(posicao)) {
 			throw new ExcessaoTabuleiro("Já existe uma peça na posição " + posicao);
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
@@ -67,7 +67,7 @@ public class Borda {
 		return posicaoExiste(posicao.getLinha(), posicao.getColuna());
 	}
 	
-	public boolean existePeca(Posicao posicao) {
+	public boolean existeUmaPeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)){
 			throw new ExcessaoTabuleiro("Posicao fora do tabuleiro");
 		}
