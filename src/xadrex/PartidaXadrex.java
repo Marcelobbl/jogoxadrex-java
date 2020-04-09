@@ -1,5 +1,8 @@
 package xadrex;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tabuleiro.Borda;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
@@ -11,6 +14,10 @@ public class PartidaXadrex {
 	private int turno;
 	private Cor jogadorVez;
 	private Borda borda;
+	
+	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+	private List<Peca> pecasCapturadas = new ArrayList<>();
+	
 	
 	public PartidaXadrex() {
 		borda = new Borda(8, 8);
@@ -57,6 +64,10 @@ public class PartidaXadrex {
 		Peca p = borda.removePeca(origem);
 		Peca capturaPeca = borda.removePeca(destino);
 		borda.colocarPeca(p, destino);
+		if (capturaPeca != null) {
+			pecasNoTabuleiro.remove(capturaPeca);
+			pecasCapturadas.add(capturaPeca);
+		}
 		return capturaPeca;
 	}
 	private void validarPosicaoOrigem(Posicao posicao) {
@@ -84,6 +95,7 @@ public class PartidaXadrex {
 		
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {
 		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());
+		pecasNoTabuleiro.add(peca);
 	}
 	
 	private void iniciaPartida() {
