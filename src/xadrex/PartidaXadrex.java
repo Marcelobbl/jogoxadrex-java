@@ -28,6 +28,7 @@ public class PartidaXadrex {
 		Posicao origem = posicaoOrigem.toPosicao();
 		Posicao destino = posicaoDestino.toPosicao();
 		validarPosicaoOrigem(origem);
+		validarPosicaoDestino(origem, destino);
 		Peca capturarPeca = movePeca(origem, destino);
 		return (PecaXadrex)capturarPeca;
 	}
@@ -39,7 +40,7 @@ public class PartidaXadrex {
 		return capturaPeca;
 	}
 	private void validarPosicaoOrigem(Posicao posicao) {
-		if (borda.existeUmaPeca(posicao)){
+		if (!borda.existeUmaPeca(posicao)){
 		throw new ExcessaoXadrex("Não existe peça na posição de origem");
 		}
 		if (!borda.peca(posicao).existeMovimentoPossivel()) {
@@ -47,6 +48,11 @@ public class PartidaXadrex {
 		}
 	}
 	
+	private void validarPosicaoDestino(Posicao origem, Posicao destino) {
+		if (!borda.peca(origem).possivelMovimento(destino)) {
+			throw new ExcessaoXadrex("A peça escolhida não pode se mover para a posição de destino");
+		}
+	}
 		
 	private void colocarNovaPeca(char coluna, int linha, PecaXadrex peca) {
 		borda.colocarPeca(peca, new PosicaoXadrex(coluna, linha).toPosicao());

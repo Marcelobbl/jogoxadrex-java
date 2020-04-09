@@ -22,9 +22,15 @@ public class Posicao {
 		return coluna;
 	}
 
-	public void setColunas(int coluna) {
+	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
+	
+	public void setValores(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
+	}
+	
 	@Override
 	public String toString(){
 		return linha + ", " + coluna;
