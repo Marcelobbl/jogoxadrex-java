@@ -26,6 +26,10 @@ public class Program {
 				System.out.print("Origem: ");
 				PosicaoXadrex origem = UI.leituraPosicaoXadrex(sc);
 				
+				boolean[][] possivelMovimentos = partidaXadrex.possivelMovimentos(origem);
+				UI.limpaTela();
+				UI.imprimirTabuleiro(partidaXadrex.getPecas(), possivelMovimentos);
+				
 				System.out.println();
 				System.out.print("Destino: ");
 				PosicaoXadrex destino = UI.leituraPosicaoXadrex(sc);

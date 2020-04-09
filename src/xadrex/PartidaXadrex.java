@@ -24,6 +24,12 @@ public class PartidaXadrex {
 		return mat;
 	}
 	
+	public boolean[][] possivelMovimentos(PosicaoXadrex origemPosicao){
+		Posicao posicao = origemPosicao.toPosicao();
+		validarPosicaoOrigem(posicao);
+		return borda.peca(posicao).possivelMovimentos();
+	}
+	
 	public PecaXadrex ExecutarMovimentoXadrex(PosicaoXadrex posicaoOrigem, PosicaoXadrex posicaoDestino) {
 		Posicao origem = posicaoOrigem.toPosicao();
 		Posicao destino = posicaoDestino.toPosicao();
