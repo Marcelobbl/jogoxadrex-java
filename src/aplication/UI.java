@@ -57,6 +57,9 @@ public class UI {
 		System.out.println();
 		System.out.println("Turno : " + partidaXadrex.getTurno());
 		System.out.println("Esperando jogador: " + partidaXadrex.getJogadorVez());
+		if(partidaXadrex.getCheck()) {
+			System.out.println("CHECK!");
+		}
 	}
 	public static void imprimirTabuleiro(PecaXadrex[][] peca) {
 		for (int i = 0; i < peca.length; i++) {
