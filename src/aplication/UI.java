@@ -56,9 +56,15 @@ public class UI {
 		imprimirPecasCapturadas(capturada);
 		System.out.println();
 		System.out.println("Turno : " + partidaXadrex.getTurno());
-		System.out.println("Esperando jogador: " + partidaXadrex.getJogadorVez());
-		if(partidaXadrex.getCheck()) {
-			System.out.println("CHECK!");
+		if(!partidaXadrex.getCheckMate()) {
+			System.out.println("Esperando jogador: " + partidaXadrex.getJogadorVez());
+			if(partidaXadrex.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECK MATE!");
+			System.out.println("Vencedor: " + partidaXadrex.getJogadorVez());
 		}
 	}
 	public static void imprimirTabuleiro(PecaXadrex[][] peca) {
@@ -108,7 +114,7 @@ public class UI {
 		System.out.println(Arrays.toString(branco.toArray()));
 		System.out.print(ANSI_RESET);
 		System.out.print(ANSI_YELLOW );
-		System.out.print("Pretas: ");
+		System.out.print("Pretas : ");
 		System.out.println(Arrays.toString(preto.toArray()));
 		System.out.print(ANSI_RESET);
 		

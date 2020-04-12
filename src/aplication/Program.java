@@ -20,7 +20,7 @@ public class Program {
 		PartidaXadrex partidaXadrex = new PartidaXadrex();
 		List<PecaXadrex> capturada = new ArrayList<>();
 		
-		while(true){
+		while(!partidaXadrex.getCheckMate()){
 			try {
 				UI.limpaTela();
 				
@@ -52,6 +52,8 @@ public class Program {
 				sc.nextLine();
 			}
 		}
+		UI.limpaTela();
+		UI.imprimirPartida(partidaXadrex, capturada);
 
 	}
 }
