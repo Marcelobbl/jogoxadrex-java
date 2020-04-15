@@ -3,12 +3,16 @@ package xadrex.pecas;
 import tabuleiro.Borda;
 import tabuleiro.Posicao;
 import xadrex.Cor;
+import xadrex.PartidaXadrex;
 import xadrex.PecaXadrex;
 
 public class Peao extends PecaXadrex {
+	
+	private PartidaXadrex partidaXadrex;
 
-	public Peao(Borda borda, Cor cor) {
+	public Peao(Borda borda, Cor cor, PartidaXadrex partidaXadrex) {
 		super(borda, cor);
+		this.partidaXadrex = partidaXadrex;
 	}
 
 	@Override
@@ -35,6 +39,17 @@ public class Peao extends PecaXadrex {
 			if (getBorda().posicaoExiste(p) &&  temUmaPecaAdversario(p)){
 				mat[p.getLinha()][p.getColuna()] = true;
 			}
+			
+			if(posicao.getLinha()==3){
+				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.vulneraveenlPassant()) {
+					mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+				}
+				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.vulneraveenlPassant()) {
+				mat[direita.getLinha() - 1][direita.getColuna()] = true;
+				}
+			}
 		}
 		else {
 			p.setValores(posicao.getLinha() + 1, posicao.getColuna());
@@ -53,6 +68,17 @@ public class Peao extends PecaXadrex {
 			p.setValores(posicao.getLinha() + 1, posicao.getColuna()+1);
 			if (getBorda().posicaoExiste(p) &&  temUmaPecaAdversario(p)){
 				mat[p.getLinha()][p.getColuna()] = true;
+			}
+			
+			if(posicao.getLinha()==4){
+				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.vulneraveenlPassant()) {
+					mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+				}
+				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.vulneraveenlPassant()) {
+				mat[direita.getLinha() + 1][direita.getColuna()] = true;
+				}
 			}
 		}
 		return mat;
