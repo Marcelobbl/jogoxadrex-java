@@ -97,6 +97,22 @@ public class PartidaXadrex {
 			pecasNoTabuleiro.remove(capturaPeca);
 			pecasCapturadas.add(capturaPeca);
 		}
+		
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Posicao origemT = new Posicao(origem.getLinha(), origem.getColuna() + 3);
+			Posicao destinoT = new Posicao(origem.getLinha(), origem.getColuna() + 1);
+			PecaXadrex torre = (PecaXadrex)borda.removePeca(origemT);
+			borda.colocarPeca(torre, destinoT);
+			torre.aumentaContagemMovimento();
+		}
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Posicao origemT = new Posicao(origem.getLinha(), origem.getColuna() - 4);
+			Posicao destinoT = new Posicao(origem.getLinha(), origem.getColuna() - 1);
+			PecaXadrex torre = (PecaXadrex)borda.removePeca(origemT);
+			borda.colocarPeca(torre, destinoT);
+			torre.aumentaContagemMovimento();
+		}
+		
 		return capturaPeca;
 	}
 	
@@ -109,6 +125,21 @@ public class PartidaXadrex {
 			borda.colocarPeca(pecaCapturada, destino);
 			pecasCapturadas.remove(pecaCapturada);
 			pecasNoTabuleiro.add(pecaCapturada);
+		}
+
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Posicao origemT = new Posicao(origem.getLinha(), origem.getColuna() + 3);
+			Posicao destinoT = new Posicao(origem.getLinha(), origem.getColuna() + 1);
+			PecaXadrex torre = (PecaXadrex)borda.removePeca(destinoT);
+			borda.colocarPeca(torre, origemT);
+			torre.diminuiContagemMovimento();
+		}
+		if (p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Posicao origemT = new Posicao(origem.getLinha(), origem.getColuna() - 4);
+			Posicao destinoT = new Posicao(origem.getLinha(), origem.getColuna() - 1);
+			PecaXadrex torre = (PecaXadrex)borda.removePeca(destinoT);
+			borda.colocarPeca(torre, origemT);
+			torre.diminuiContagemMovimento();
 		}
 	}
 	
@@ -197,7 +228,7 @@ public class PartidaXadrex {
 		colocarNovaPeca('b', 1, new Cavalo(borda, Cor.Branco));
 		colocarNovaPeca('c', 1, new Bispo(borda, Cor.Branco));
 		colocarNovaPeca('d', 1, new Rainha(borda, Cor.Branco));
-		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco));
+		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco, this));
 		colocarNovaPeca('f', 1, new Bispo(borda, Cor.Branco));
 		colocarNovaPeca('g', 1, new Cavalo(borda, Cor.Branco));
 		colocarNovaPeca('h', 1, new Torre(borda, Cor.Branco));
@@ -214,7 +245,7 @@ public class PartidaXadrex {
 		colocarNovaPeca('b', 8, new Cavalo(borda, Cor.Preto));
 		colocarNovaPeca('c', 8, new Bispo(borda, Cor.Preto));
 		colocarNovaPeca('d', 8, new Rainha(borda, Cor.Preto));
-		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto));
+		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto, this));
 		colocarNovaPeca('f', 8, new Bispo(borda, Cor.Preto));
 		colocarNovaPeca('g', 8, new Cavalo(borda, Cor.Preto));
 		colocarNovaPeca('h', 8, new Torre(borda, Cor.Preto));
