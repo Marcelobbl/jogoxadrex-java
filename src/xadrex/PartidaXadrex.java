@@ -8,6 +8,7 @@ import tabuleiro.Borda;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import xadrex.pecas.Bispo;
+import xadrex.pecas.Cavalo;
 import xadrex.pecas.Peao;
 import xadrex.pecas.Rei;
 import xadrex.pecas.Torre;
@@ -192,9 +193,11 @@ public class PartidaXadrex {
 	
 	private void iniciaPartida() {
 		colocarNovaPeca('a', 1, new Torre(borda, Cor.Branco));
+		colocarNovaPeca('b', 1, new Cavalo(borda, Cor.Branco));
 		colocarNovaPeca('c', 1, new Bispo(borda, Cor.Branco));
 		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco));
 		colocarNovaPeca('f', 1, new Bispo(borda, Cor.Branco));
+		colocarNovaPeca('g', 1, new Cavalo(borda, Cor.Branco));
 		colocarNovaPeca('h', 1, new Torre(borda, Cor.Branco));
 		colocarNovaPeca('a', 2, new Peao(borda, Cor.Branco));
 		colocarNovaPeca('b', 2, new Peao(borda, Cor.Branco));
@@ -206,9 +209,11 @@ public class PartidaXadrex {
 		colocarNovaPeca('h', 2, new Peao(borda, Cor.Branco));
 		
 		colocarNovaPeca('a', 8, new Torre(borda, Cor.Preto));
+		colocarNovaPeca('b', 8, new Cavalo(borda, Cor.Preto));
 		colocarNovaPeca('c', 8, new Bispo(borda, Cor.Preto));
 		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto));
 		colocarNovaPeca('f', 8, new Bispo(borda, Cor.Preto));
+		colocarNovaPeca('g', 8, new Cavalo(borda, Cor.Preto));
 		colocarNovaPeca('h', 8, new Torre(borda, Cor.Preto));
 		colocarNovaPeca('a', 7, new Peao(borda, Cor.Preto));
 		colocarNovaPeca('b', 7, new Peao(borda, Cor.Preto));
