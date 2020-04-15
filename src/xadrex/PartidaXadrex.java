@@ -84,9 +84,11 @@ public class PartidaXadrex {
 	}
 	
 	private Peca movePeca(Posicao origem, Posicao destino) {
-		Peca p = borda.removePeca(origem);
+		PecaXadrex p = (PecaXadrex)borda.removePeca(origem);
+		p.aumentaContagemMovimento();
 		Peca capturaPeca = borda.removePeca(destino);
 		borda.colocarPeca(p, destino);
+		
 		if (capturaPeca != null) {
 			pecasNoTabuleiro.remove(capturaPeca);
 			pecasCapturadas.add(capturaPeca);
@@ -95,7 +97,8 @@ public class PartidaXadrex {
 	}
 	
 	private void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
-		Peca p = borda.removePeca(destino);
+		PecaXadrex p = (PecaXadrex)borda.removePeca(destino);
+		p.diminuiContagemMovimento();
 		borda.colocarPeca(p, origem);
 		
 		if (pecaCapturada!= null) {
