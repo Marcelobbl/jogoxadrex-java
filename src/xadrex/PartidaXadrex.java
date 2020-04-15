@@ -10,6 +10,7 @@ import tabuleiro.Posicao;
 import xadrex.pecas.Bispo;
 import xadrex.pecas.Cavalo;
 import xadrex.pecas.Peao;
+import xadrex.pecas.Rainha;
 import xadrex.pecas.Rei;
 import xadrex.pecas.Torre;
 
@@ -195,6 +196,7 @@ public class PartidaXadrex {
 		colocarNovaPeca('a', 1, new Torre(borda, Cor.Branco));
 		colocarNovaPeca('b', 1, new Cavalo(borda, Cor.Branco));
 		colocarNovaPeca('c', 1, new Bispo(borda, Cor.Branco));
+		colocarNovaPeca('d', 1, new Rainha(borda, Cor.Branco));
 		colocarNovaPeca('e', 1, new Rei(borda, Cor.Branco));
 		colocarNovaPeca('f', 1, new Bispo(borda, Cor.Branco));
 		colocarNovaPeca('g', 1, new Cavalo(borda, Cor.Branco));
@@ -211,6 +213,7 @@ public class PartidaXadrex {
 		colocarNovaPeca('a', 8, new Torre(borda, Cor.Preto));
 		colocarNovaPeca('b', 8, new Cavalo(borda, Cor.Preto));
 		colocarNovaPeca('c', 8, new Bispo(borda, Cor.Preto));
+		colocarNovaPeca('d', 8, new Rainha(borda, Cor.Preto));
 		colocarNovaPeca('e', 8, new Rei(borda, Cor.Preto));
 		colocarNovaPeca('f', 8, new Bispo(borda, Cor.Preto));
 		colocarNovaPeca('g', 8, new Cavalo(borda, Cor.Preto));
