@@ -42,11 +42,11 @@ public class Peao extends PecaXadrex {
 			
 			if(posicao.getLinha()==3){
 				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
-				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.vulneraveenlPassant()) {
+				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.getVulneraveenlPassant()) {
 					mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
 				}
 				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
-				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.vulneraveenlPassant()) {
+				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.getVulneraveenlPassant()) {
 				mat[direita.getLinha() - 1][direita.getColuna()] = true;
 				}
 			}
@@ -72,11 +72,11 @@ public class Peao extends PecaXadrex {
 			
 			if(posicao.getLinha()==4){
 				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
-				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.vulneraveenlPassant()) {
+				if(getBorda().posicaoExiste(esquerda) && temUmaPecaAdversario(esquerda) && getBorda().peca(esquerda) == partidaXadrex.getVulneraveenlPassant()) {
 					mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
 				}
 				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
-				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.vulneraveenlPassant()) {
+				if(getBorda().posicaoExiste(direita) && temUmaPecaAdversario(direita) && getBorda().peca(direita) == partidaXadrex.getVulneraveenlPassant()) {
 				mat[direita.getLinha() + 1][direita.getColuna()] = true;
 				}
 			}

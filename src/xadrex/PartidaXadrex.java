@@ -22,6 +22,7 @@ public class PartidaXadrex {
 	private boolean check;
 	private boolean checkMate;
 	private PecaXadrex vulneravelenPassant;
+	private PecaXadrex promocao;
 	
 	
 	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
@@ -50,10 +51,18 @@ public class PartidaXadrex {
 		return checkMate;
 	}
 	
-	public PecaXadrex vulneraveenlPassant() {
+	public PecaXadrex getVulneraveenlPassant() {
 		return vulneravelenPassant;
 	}
 	
+	public PecaXadrex getPromocao() {
+		return promocao;
+	}
+
+	public void setPromocao(PecaXadrex promocao) {
+		this.promocao = promocao;
+	}
+
 	public PecaXadrex[][] getPecas(){
 		PecaXadrex[][] mat = new PecaXadrex[borda.getLinhas()][borda.getColunas()];
 		for(int i=0 ; i<borda.getLinhas();i++) {
@@ -76,13 +85,21 @@ public class PartidaXadrex {
 		validarPosicaoOrigem(origem);
 		validarPosicaoDestino(origem, destino);
 		Peca capturarPeca = movePeca(origem, destino);
-		
+				
 		if(testeCheck(jogadorVez)) {
 			desfazMovimento(origem, destino, capturarPeca);
 			throw new ExcessaoXadrex("Voçe não pode se colocar em check");
 		}
 		
 		PecaXadrex pecaMoveu = (PecaXadrex)borda.peca(destino); 
+		
+		promocao = null;
+		if(pecaMoveu instanceof Peao) {
+			if ((pecaMoveu.getCor() == Cor.Branco && destino.getLinha() == 0) || (pecaMoveu.getCor() == Cor.Preto && destino.getLinha() == 7)) {
+				promocao = (PecaXadrex)borda.peca(destino);
+				promocao = replacePromotedPiece("R");
+			}
+		}
 		
 		check = (testeCheck(oponente(jogadorVez))) ? true : false;
 		
@@ -93,7 +110,7 @@ public class PartidaXadrex {
 			proximoTurno();
 		}
 		
-		if (pecaMoveu instanceof Peao && destino.getLinha() == origem.getLinha() - 2 || pecaMoveu instanceof Peao && destino.getLinha() == origem.getLinha() + 2  ){
+		if (pecaMoveu instanceof Peao && destino.getLinha() == origem.getLinha() - 2 || destino.getLinha() == origem.getLinha() + 2 ){
 			vulneravelenPassant = pecaMoveu;
 		}
 		else {
@@ -101,6 +118,32 @@ public class PartidaXadrex {
 		}
 		
 		return (PecaXadrex)capturarPeca;
+	}
+	
+	public PecaXadrex replacePromotedPiece(String type) {
+		if(promocao == null) {
+			throw new IllegalStateException("Não há peça para ser promovida");
+		}
+		if (!type.equals("B") && !type.equals("C") && !type.equals("T") && !type.equals("R")) {
+			return promocao;
+		}
+		
+		Posicao pos = promocao.getPosicaoXadrex().toPosicao();
+		Peca p = borda.removePeca(pos);
+		pecasNoTabuleiro.remove(p);
+		
+		PecaXadrex newPeca = newPeca(type, promocao.getCor());
+		borda.colocarPeca(newPeca, pos);
+		pecasNoTabuleiro.add(newPeca);
+		
+		return newPeca;
+	}
+	
+	private PecaXadrex newPeca(String type, Cor cor) {
+		if(type.equals("B")) return new Bispo(borda, cor);
+		if(type.equals("C")) return new Cavalo(borda, cor);
+		if(type.equals("R")) return new Rainha(borda, cor);
+		return new Torre(borda, cor);
 	}
 	
 	private Peca movePeca(Posicao origem, Posicao destino) {
@@ -182,8 +225,6 @@ public class PartidaXadrex {
 					pawPosicao = new Posicao( 4, destino.getColuna());
 				}
 				borda.colocarPeca(peao, pawPosicao);
-				
-				pecaCapturada = borda.removePeca(pawPosicao);
 				}
 		}
 		

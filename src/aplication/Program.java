@@ -42,6 +42,16 @@ public class Program {
 				if (captureXadrex != null) {
 					capturada.add(captureXadrex);
 				}
+				
+				if(partidaXadrex.getPromocao() != null) {
+					System.out.print("Entre com a peça a ser promovida (B/C/T/R)");
+					String type = sc.nextLine().toUpperCase();
+					while (!type.equals("B") && !type.equals("C") && !type.equals("T") && !type.equals("R")) {
+						System.out.println("Valor invalido! Entre com a peça a ser promovida (B/C/T/R)");
+						type = sc.nextLine().toUpperCase();
+					}
+					partidaXadrex.replacePromotedPiece(type);
+				}
 			}
 			catch (ExcessaoXadrex e) {
 				System.out.println(e.getMessage());
